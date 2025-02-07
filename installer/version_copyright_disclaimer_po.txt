@@ -1,7 +1,7 @@
 ]project-open[ V5.2 Community Edition 
 
 (c) 2021 ]project-open[ Business Solutions, S.L. and
-         SPAZIO IT – Soluzioni Informatiche s.a.s.
+    SPAZIO IT – Soluzioni Informatiche s.a.s.
 
 This is the ]project-open[ "Community Edition".
 This version is suitable for organizations with up to 10-15 users. 
