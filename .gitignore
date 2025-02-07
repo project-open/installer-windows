@@ -1,0 +1,15 @@
+# Temporary files
+*.log
+*.orig
+*~
+.\#*
+.~*
+\#*\#
+
+# ]po[ Installer Binaries, release candidates
+project-open-Windows*.exe
+
+# Other installers used, but not to be part of repo
+# ./bin/ includes the important installer versions not to be lost
+postgresql-*-windows-x64.exe
+
