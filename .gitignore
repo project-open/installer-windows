@@ -13,3 +13,20 @@ project-open-Windows*.exe
 # ./bin/ includes the important installer versions not to be lost
 postgresql-*-windows-x64.exe
 
+Cygwin-Terminal.ico
+Cygwin.bat
+Cygwin.ico
+
+bin/*
+cygdrive/*
+dev/*
+etc/*
+home/*
+lib/*
+pgsql/*
+proc/*
+sbin/*
+tmp/*
+usr/*
+var/*
+
