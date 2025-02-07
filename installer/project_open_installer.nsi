@@ -19,7 +19,7 @@
 !define RELEASE		"007"
 Name			"${PRODUCT} ${VERSION_MAJ}.${VERSION_MIN}"
 Caption			"${DESCRIPTION}" 
-!define TARGET		c:\project-open
+!define TARGET		e:\project-open
 !define NSD_VER		"naviserver499"
 SetCompress		auto
 
@@ -29,8 +29,7 @@ SetCompress		auto
 #!define NOFILE 1
 
 # Output
-!define OUTPATH 	"c:\download"
-#!define OUTPATH	"z:\"
+!define OUTPATH 	"e:\download"
 !define OUTBASE		"project-open-Windows-Community-${VERSION_MAJ}.${VERSION_MIN}-${RELEASE}"
 OutFile			"${OUTPATH}\${OUTBASE}.exe"
 
@@ -326,15 +325,15 @@ ShowUninstDetails show
 # Actions to be executed _before_ actually compiling
 # ---------------------------------------------------
 
-!system 'c:\project-open\bin\cp /installer/project_open_installer.nsi /servers/projop/packages/intranet-core/preconf/'
-!system 'c:\project-open\bin/bash -c "cd ~/packages/intranet-core"'
+!system '${TARGET}\bin\cp /installer/project_open_installer.nsi /servers/projop/packages/intranet-core/preconf/'
+!system '${TARGET}\bin/bash -c "cd ~/packages/intranet-core"'
 !system 'c:\windows\system32\sc.exe stop po-service-monitor'
-!system 'c:\project-open\bin\sleep 1'
+!system '${TARGET}\bin\sleep 1'
 !system 'c:\windows\system32\sc.exe stop po-projop'
-!system 'c:\project-open\bin\sleep 1'
+!system '${TARGET}\bin\sleep 1'
 !system 'c:\windows\system32\sc.exe stop postgresql-16.6'
 !system 'c:\windows\system32\sc.exe stop postgresql-9.2'
-!system 'c:\project-open\bin\sleep 1'
+!system '${TARGET}\bin\sleep 1'
 Section
 	StrCpy $INSTDIR $instv
 SectionEnd
@@ -855,7 +854,7 @@ Function .onInit
     InitPluginsDir
     StrCpy $StartMenuGroup "]project-open["
     !insertmacro MULTIUSER_INIT
-    StrCpy $instv "c:\project-open"
+    StrCpy $instv "${TARGET}"
 FunctionEnd
 
 
@@ -878,6 +877,6 @@ FunctionEnd
 # Upload file to SourceForge after compilation
 # --------------------------------------------------------
 
-#!finalize 'c:\project-open\bin\rm -f ${OUTPATH}\${OUTBASE}.zip'
-#!finalize 'c:\project-open\bin\7z a "${OUTPATH}\${OUTBASE}.zip" %1 C:\project-open\servers\projop\packages\intranet-core\LICENSE.Windows C:\project-open\servers\projop\packages\intranet-core\README.ProjectOpen'
-#!finalize 'c:\project-open\bin\rm -f ${OUTPATH}\${OUTBASE}.exe'
+#!finalize '${TARGET}\bin\rm -f ${OUTPATH}\${OUTBASE}.zip'
+#!finalize '${TARGET}\bin\7z a "${OUTPATH}\${OUTBASE}.zip" %1 C:\project-open\servers\projop\packages\intranet-core\LICENSE.Windows C:\project-open\servers\projop\packages\intranet-core\README.ProjectOpen'
+#!finalize '${TARGET}\bin\rm -f ${OUTPATH}\${OUTBASE}.exe'
