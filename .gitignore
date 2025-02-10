@@ -18,6 +18,9 @@ servers/projop/packages
 
 # Files created by the installer
 uninstall.exe
+project-open-Windows-*.exe
+postgresql-16.6-3-windows-x64.exe
+installer/jre*.msi
 
 # CygWin, JRE and PostgreSQL files
 bin/*
