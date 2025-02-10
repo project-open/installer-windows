@@ -16,17 +16,17 @@
 !define REGKEY		"SOFTWARE\${SHORTNAME}"
 !define VERSION_MAJ	"5.2.0"
 !define VERSION_MIN	"0.1"
-!define RELEASE		"001"
+!define RELEASE		"003-notest-nofile"
 Name			"${PRODUCT} ${VERSION_MAJ}.${VERSION_MIN}"
 Caption			"${DESCRIPTION}" 
-!define TARGET		e:\project-open
+!define TARGET		c:\project-open
 !define NSD_VER		"naviserver499"
 SetCompress		auto
 
 # Create installer without the initial tests if already installed?
-#!define NOTEST 1
+!define NOTEST 1
 # Create installer without files? Used for testing
-#!define NOFILE 1
+!define NOFILE 1
 
 # Output
 !define OUTPATH 	"e:\download"
@@ -449,7 +449,7 @@ NoSpaces:
     File /a /r ${TARGET}\bin\*
 
     SetOutPath $INSTDIR\installer
-    File /a /r /x NSIS /x pg_dump.vanilla.sql /x pg_dump.vanilla.sql.gz ${TARGET}\installer\*
+    File /a /r /x NSIS /x pg_dump.vanilla.sql /x pg_dump.vanilla.sql.gz /x naviserver499.zip /x tcl8.5.19.zip ${TARGET}\installer\*
 
     SetOutPath $INSTDIR\lib
     File /a /r ${TARGET}\lib\*
@@ -467,6 +467,7 @@ NoSpaces:
     Delete ${TARGET}\servers\projop\log\*
     SetOutPath $INSTDIR\servers\projop
     File /a /r /x error.log /x projop.log /x pg_dump*.sql ${TARGET}\servers\projop\*
+    SetOutPath $INSTDIR\servers\projop\log
 
     SetOutPath $INSTDIR\usr
     File /a /r ${TARGET}\usr\*

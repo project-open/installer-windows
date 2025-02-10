@@ -11,7 +11,7 @@
 installer/pg_dump.vanilla.sql
 
 # No need to version log files...
-servers/projop/log/*
+servers/projop/log/*.log
 
 # /packages/ come from GitHub packages repo
 servers/projop/packages
