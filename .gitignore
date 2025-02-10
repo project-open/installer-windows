@@ -6,26 +6,28 @@
 .~*
 \#*\#
 
-# ]po[ Installer Binaries, release candidates
-project-open-Windows*.exe
-
 # Other installers used, but not to be part of repo
 # ./bin/ includes the important installer versions not to be lost
 postgresql-*-windows-x64.exe
 
-Cygwin-Terminal.ico
-Cygwin.bat
-Cygwin.ico
+# Cygwin-Terminal.ico
+# Cygwin.bat
+# Cygwin.ico
+uninstall.exe
 
 bin/*
 cygdrive/*
 dev/*
 etc/*
 home/*
+installer/pg_dump.vanilla.sql
+jre/*
 lib/*
 pgsql/*
 proc/*
 sbin/*
+servers/projop/log/*
+servers/projop/packages
 tmp/*
 usr/*
 var/*

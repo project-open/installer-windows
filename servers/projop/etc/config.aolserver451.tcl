@@ -28,7 +28,7 @@ if {![info exists env(AOLDIR)]} {
 	set env(AOLDIR) [lindex $::argv 0]
 }
 set winaoldir			[string tolower $env(AOLDIR)]
-set winaoldir			"c:/project-open"
+set winaoldir			"e:/project-open"
 set unixaoldir			[string map {\\ /} ${winaoldir}]
 set rootdir_pieces		[split $unixaoldir "/"]
 set rootdir			[join [lrange $rootdir_pieces 0 1] "/"]
@@ -461,7 +461,7 @@ ns_section "ns/db/drivers"
 	ns_param	postgres		${bindir}/nspostgres.so  ;# Load PostgreSQL driver
 
 ns_section "ns/db/driver/postgres"
-    ns_param	pgbin				"c:/project-open/pgsql/bin"	    ;# Path for psql binary
+    ns_param	pgbin				"e:/project-open/pgsql/bin"	    ;# Path for psql binary
 
 
  

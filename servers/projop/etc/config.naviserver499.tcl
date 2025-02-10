@@ -25,7 +25,7 @@ set address			0.0.0.0
 # '-b address:port' which matches the address and port
 # as specified above.
 
-set installdir			"c:/project-open"
+set installdir			"e:/project-open"
 set server			"projop"
 set servername			"\]project-open\[ V5.0"
 
@@ -407,7 +407,7 @@ ns_section "ns/db/drivers"
     ns_param	postgres		$bindir/nsdbpg.dll  ;# Load PostgreSQL driver
 
 ns_section "ns/db/driver/postgres"
-    ns_param	pgbin			"c:/project-open/pgsql/bin"	    ;# Path for psql binary
+    ns_param	pgbin			"e:/project-open/pgsql/bin"	    ;# Path for psql binary
 
 
 # Database Pools: This is how AOLserver  ``talks'' to the RDBMS. You need

@@ -15,8 +15,8 @@
 !define	URL		https://www.project-open.com
 !define REGKEY		"SOFTWARE\${SHORTNAME}"
 !define VERSION_MAJ	"5.2.0"
-!define VERSION_MIN	"0.0"
-!define RELEASE		"007"
+!define VERSION_MIN	"0.1"
+!define RELEASE		"001"
 Name			"${PRODUCT} ${VERSION_MAJ}.${VERSION_MIN}"
 Caption			"${DESCRIPTION}" 
 !define TARGET		e:\project-open
@@ -449,10 +449,7 @@ NoSpaces:
     File /a /r ${TARGET}\bin\*
 
     SetOutPath $INSTDIR\installer
-    File /a /r ${TARGET}\installer\*
-
-    SetOutPath $INSTDIR\dev
-    File /a /r ${TARGET}\dev\*
+    File /a /r /x NSIS /x pg_dump.vanilla.sql /x pg_dump.vanilla.sql.gz ${TARGET}\installer\*
 
     SetOutPath $INSTDIR\lib
     File /a /r ${TARGET}\lib\*
@@ -464,10 +461,7 @@ NoSpaces:
     File /a /r ${TARGET}\jre\*
 
     SetOutPath $INSTDIR\pgsql
-    File /a /r \
-    /x doc \
-    /x include \
-    ${TARGET}\pgsql\*
+    File /a /r /x doc /x include ${TARGET}\pgsql\*
 
     # The main ]po[ server, excluding the log and backup files
     Delete ${TARGET}\servers\projop\log\*
