@@ -6,29 +6,30 @@
 .~*
 \#*\#
 
-# Other installers used, but not to be part of repo
-# ./bin/ includes the important installer versions not to be lost
-postgresql-*-windows-x64.exe
 
-# Cygwin-Terminal.ico
-# Cygwin.bat
-# Cygwin.ico
+# Database comes installed in the PG files
+installer/pg_dump.vanilla.sql
+
+# No need to version log files...
+servers/projop/log/*
+
+# /packages/ come from GitHub packages repo
+servers/projop/packages
+
+# Files created by the installer
 uninstall.exe
 
+# CygWin, JRE and PostgreSQL files
 bin/*
 cygdrive/*
 dev/*
 etc/*
 home/*
-installer/pg_dump.vanilla.sql
 jre/*
 lib/*
 pgsql/*
 proc/*
 sbin/*
-servers/projop/log/*
-servers/projop/packages
 tmp/*
 usr/*
 var/*
-
