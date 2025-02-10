@@ -9,14 +9,14 @@
 # -----------------------------------------------------------------------
 
 !define PRODUCT		"]project-open["
-!define COMPANY		"]project-open[ Business Consulting, S.L."
+!define COMPANY		"]project-open[ Business Solutions, S.L."
 !define SHORTNAME	"project-open"
 !define DESCRIPTION	"]project-open[ Project Management"
 !define	URL		https://www.project-open.com
 !define REGKEY		"SOFTWARE\${SHORTNAME}"
 !define VERSION_MAJ	"5.2.0"
 !define VERSION_MIN	"0.1"
-!define RELEASE		"003-notest-nofile"
+!define RELEASE		"004"
 Name			"${PRODUCT} ${VERSION_MAJ}.${VERSION_MIN}"
 Caption			"${DESCRIPTION}" 
 !define TARGET		c:\project-open
@@ -24,9 +24,9 @@ Caption			"${DESCRIPTION}"
 SetCompress		auto
 
 # Create installer without the initial tests if already installed?
-!define NOTEST 1
+# !define NOTEST 1
 # Create installer without files? Used for testing
-!define NOFILE 1
+# !define NOFILE 1
 
 # Output
 !define OUTPATH 	"e:\download"

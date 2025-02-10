@@ -7,7 +7,7 @@
 #
 ######################################################################
 
-ns_log notice "nsd.tcl: starting to read config file..."
+ns_log Notice "nsd.tcl: starting to read config file..."
 
 #---------------------------------------------------------------------
 # change to 80 and 443 for production use
@@ -25,9 +25,9 @@ set address			0.0.0.0
 # '-b address:port' which matches the address and port
 # as specified above.
 
-set installdir			"e:/project-open"
+set installdir			"c:/project-open"
 set server			"projop"
-set servername			"\]project-open\[ V5.0"
+set servername			"\]project-open\[ V5.2"
 
 # Are we runnng behind a proxy?
 set proxy_mode			false
@@ -509,5 +509,5 @@ ns_section ns/server/${server}/module/nsproxy
 	# ns_param	idletimeout        300000
 
 
-ns_log notice "nsd.tcl: using threadsafe tcl: [info exists tcl_platform(threaded)]"
-ns_log notice "nsd.tcl: finished reading config file."
+ns_log Notice "nsd.tcl: using threadsafe tcl: [info exists tcl_platform(threaded)]"
+ns_log Notice "nsd.tcl: finished reading config file."
