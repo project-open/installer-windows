@@ -6,18 +6,12 @@
 .~*
 \#*\#
 
-
-# Database comes installed in the PG files
-installer/pg_dump.vanilla.sql
-
 # No need to version log files...
 servers/projop/log/*.log
 servers/projop/log/throttle-data.dump
 
 # /packages/ come from GitHub packages repo
 servers/projop/packages
-
-
 
 # Files created by the installer
 uninstall.exe
