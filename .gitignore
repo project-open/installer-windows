@@ -14,6 +14,11 @@ servers/projop/log/throttle-data.dump
 servers/projop/packages
 
 # Files created by the installer
+
+Cygwin-Terminal.ico
+Cygwin.bat
+Cygwin.ico
+setup-x86_64.exe
 uninstall.exe
 project-open-Windows-*.exe
 postgresql-16.6-3-windows-x64.exe
