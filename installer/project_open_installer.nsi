@@ -14,9 +14,11 @@
 !define DESCRIPTION	"]project-open[ Project Management"
 !define	URL		https://www.project-open.com
 !define REGKEY		"SOFTWARE\${SHORTNAME}"
+
 !define VERSION_MAJ	"5.2.0"
 !define VERSION_MIN	"2.6"
 !define RELEASE		"001"
+
 Name			"${PRODUCT} ${VERSION_MAJ}.${VERSION_MIN}"
 Caption			"${DESCRIPTION}" 
 !define TARGET		c:\project-open
