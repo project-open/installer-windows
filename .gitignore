@@ -33,3 +33,5 @@ sbin/*
 tmp/*
 usr/*
 var/*
+servers/projop/log/*
+
