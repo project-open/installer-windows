@@ -57,7 +57,7 @@ function setCredentials (email, password) {
 	  
 	  <multiple name=users>
 	    @users.before_html;noquote@
-	    <table border="0" cellpadding="0" cellspacing="0" style="cursor:pointer"><colgroup><col width="80px"><col width="230px"></colgroup>
+	    <table border="0" cellpadding="2" cellspacing="2" style="cursor:pointer"><colgroup><col width="80px"><col width="230px"></colgroup>
 	      <tr class="off" 
 		  onmouseover="this.className='on';setImage('@users.lower_name@', '/intranet/images/demoserver/@users.lower_name@.jpg')" 
 		  onmouseout="this.className='off';setImage('@users.lower_name@','/intranet/images/demoserver/@users.lower_name@_bw.jpg')"
@@ -98,8 +98,8 @@ function setCredentials (email, password) {
 	    <tr><td>
 		<font color=red>
 		  &nbsp;<br>
-		  Please select one of the demo accounts from the left hand side<br>
-		  and click on the "Log In" button.<br>
+		  Please select one of the demo accounts from the left<br>
+		  and click on it for automatic login.<br>
 		</font>
 	    </td></tr>
 	  </table>
@@ -156,6 +156,14 @@ function setCredentials (email, password) {
 
 </if>
 
+<%= [im_component_bay top] %>
+<table width="100%">
+    <tr valign="top">
+	<td width="50%"><%= [im_component_bay left] %></td>
+	<td width="50%"><%= [im_component_bay right] %></td>
+    </tr>
+</table>
+<%= [im_component_bay bottom] %>
 
   </div>
 </div>
