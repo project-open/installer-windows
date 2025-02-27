@@ -17,7 +17,7 @@
 
 !define VERSION_MAJ	"5.2.0"
 !define VERSION_MIN	"2.6"
-!define RELEASE		"001"
+!define RELEASE		"005"
 
 Name			"${PRODUCT} ${VERSION_MAJ}.${VERSION_MIN}"
 Caption			"${DESCRIPTION}" 
@@ -26,9 +26,9 @@ Caption			"${DESCRIPTION}"
 SetCompress		auto
 
 # Create installer without the initial tests if already installed?
-# !define NOTEST 1
+#!define NOTEST 1
 # Create installer without files? Used for testing
-# !define NOFILE 1
+#!define NOFILE 1
 
 # Output
 !define OUTPATH 	"e:\download"
@@ -612,6 +612,7 @@ Section -post SEC0001
     # new 16.6: "C:\PostgreSQL\16\bin\pg_ctl.exe" runservice -N "postgresql-x64-16" -D "C:\PostgreSQL\16\data" -w
     # old 9.2: C:\project-open\pgsql\bin\pg_ctl.exe runservice -N postgresql-9.2 -D C:\project-open/pgsql/data -w
 
+
     # ----------------------------------------------------
     # Setup PostgreSQL service
     #
@@ -668,7 +669,7 @@ Section -post SEC0001
     pop $R0
     DetailPrint "Set ]po[ NaviServer Projop restart behavior: result=$R0"
 
-    DetailPrint "Starting ]po[ - this may take several minutes, particularly on Win 10 with SmartScreen/Defender enabled..."
+    DetailPrint "Starting ]po[ - this may take several minutes, particularly with SmartScreen/Defender enabled"
     nsExec::ExecToLog 'net start po-projop'
     pop $R0
     DetailPrint "]po[ started: result=$R0"
@@ -695,26 +696,49 @@ Section -post SEC0001
     # ----------------------------------------------------
     # Setup the pgAdmin3 default database
     #
-    DetailPrint "Setting up pgAdminIII preconfiguration"
-    WriteRegDWORD HKCU	"Software\pgAdmin III\Servers"   "Count" 1
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Colour" ""
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Database" "projop"
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "DbRestriction" ""
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Description" "localhost:projop (empty password)"
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "DiscoveryID" ""
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "LastDatabase" "projop"
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "LastSchema" "public"
-    WriteRegDWORD HKCU	"Software\pgAdmin III\Servers\1" "Port" 5432
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Restore" "true"
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Server" "localhost"
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "ServiceID" ""
-    WriteRegDWORD HKCU	"Software\pgAdmin III\Servers\1" "SSL" 0
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "StorePwd" "true"
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Username" "projop"
+    #DetailPrint "Setting up pgAdminIII preconfiguration"
+    #WriteRegDWORD HKCU	"Software\pgAdmin III\Servers"   "Count" 1
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Colour" ""
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Database" "projop"
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "DbRestriction" ""
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Description" "localhost:projop (empty password)"
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "DiscoveryID" ""
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "LastDatabase" "projop"
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "LastSchema" "public"
+    #WriteRegDWORD HKCU	"Software\pgAdmin III\Servers\1" "Port" 5432
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Restore" "true"
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Server" "localhost"
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "ServiceID" ""
+    #WriteRegDWORD HKCU	"Software\pgAdmin III\Servers\1" "SSL" 0
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "StorePwd" "true"
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\1" "Username" "projop"
 
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\Hints" "saving-passwords" "Suppress"
-    WriteRegStr HKCU	"Software\pgAdmin III\Servers\Updates" "pgsql-Versions" "9.2"
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\Hints" "saving-passwords" "Suppress"
+    #WriteRegStr HKCU	"Software\pgAdmin III\Servers\Updates" "pgsql-Versions" "9.2"
     
+    
+    # ----------------------------------------------------
+    # Setup GIT
+    #
+
+    nsExec::ExecToLog `$INSTDIR\bin\mkdir -p ~`
+    DetailPrint "GIT: mkdir -p ~: Create home directory if needed"
+
+    nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global --replace-all safe.directory '*'"`
+    DetailPrint "GIT: git config --global --replace-all safe.directory '*'"
+    
+    nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global user.name 'Project Open'"`
+    DetailPrint "GIT: git config --global user.name 'Project Open'"
+    
+    nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global user.email 'infoproject-open.com'"`
+    DetailPrint "GIT: git config --global user.email 'info@project-open.com'"
+    
+    nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global credential.helper 'cache --timeout=7200'"`
+    DetailPrint "GIT: git config --global credential.helper 'cache --timeout=7200'"
+        
+    nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global core.fileMode false"`
+    DetailPrint "GIT: git config --global system core.fileMode false"
+
 SectionEnd
 
 
