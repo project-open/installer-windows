@@ -55,7 +55,7 @@ set db_port			""
 set db_user			$server
 
 
-set max_file_upload_mb		20
+set max_file_upload_mb		200
 set max_file_upload_min		5
 
 
@@ -191,7 +191,7 @@ ns_section ns/server/${server}
     #
     ns_param	maxconnections		100	;# Max connections to put on queue
     ns_param	maxthreads		10
-    ns_param	minthreads		1
+    ns_param	minthreads		2
     ns_param	connsperthread		1000	;# 10000; number of conns handled before disposal
     ns_param	highwatermark		100     ;# 80; allow concurrent creates above this queue-is percentage
     						;# 100 means to disable concurrent creates
