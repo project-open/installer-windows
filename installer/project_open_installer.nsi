@@ -16,8 +16,8 @@
 !define REGKEY		"SOFTWARE\${SHORTNAME}"
 
 !define VERSION_MAJ	"5.2.0"
-!define VERSION_MIN	"2.6"
-!define RELEASE		"005"
+!define VERSION_MIN	"2.8"
+!define RELEASE		"001"
 
 Name			"${PRODUCT} ${VERSION_MAJ}.${VERSION_MIN}"
 Caption			"${DESCRIPTION}" 
@@ -721,23 +721,24 @@ Section -post SEC0001
     # Setup GIT
     #
 
-    nsExec::ExecToLog `$INSTDIR\bin\mkdir -p ~`
-    DetailPrint "GIT: mkdir -p ~: Create home directory if needed"
+    # Fraber 2025-02-27: Moved to /etc/gitconfig for system wide defaults
+    #nsExec::ExecToLog `$INSTDIR\bin\mkdir -p ~`
+    #DetailPrint "GIT: mkdir -p ~: Create home directory if needed"
 
-    nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global --replace-all safe.directory '*'"`
-    DetailPrint "GIT: git config --global --replace-all safe.directory '*'"
+    #nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global --replace-all safe.directory '*'"`
+    #DetailPrint "GIT: git config --global --replace-all safe.directory '*'"
     
-    nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global user.name 'Project Open'"`
-    DetailPrint "GIT: git config --global user.name 'Project Open'"
+    #nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global user.name 'Project Open'"`
+    #DetailPrint "GIT: git config --global user.name 'Project Open'"
     
-    nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global user.email 'infoproject-open.com'"`
-    DetailPrint "GIT: git config --global user.email 'info@project-open.com'"
+    #nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global user.email 'infoproject-open.com'"`
+    #DetailPrint "GIT: git config --global user.email 'info@project-open.com'"
     
-    nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global credential.helper 'cache --timeout=7200'"`
-    DetailPrint "GIT: git config --global credential.helper 'cache --timeout=7200'"
+    #nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global credential.helper 'cache --timeout=7200'"`
+    #DetailPrint "GIT: git config --global credential.helper 'cache --timeout=7200'"
         
-    nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global core.fileMode false"`
-    DetailPrint "GIT: git config --global system core.fileMode false"
+    #nsExec::ExecToLog `$INSTDIR\bin\bash -c "git config --global core.fileMode false"`
+    #DetailPrint "GIT: git config --global system core.fileMode false"
 
 SectionEnd
 
