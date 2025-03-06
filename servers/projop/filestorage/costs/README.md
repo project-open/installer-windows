@@ -1,0 +1,1 @@
+Folder for files associated with financial documents such as scanned originals etc

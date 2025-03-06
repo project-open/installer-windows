@@ -1,0 +1,1 @@
+Folder related to tickets such as screenshots

@@ -1,0 +1,1 @@
+Folder for project files. The path consists first of the customer short name, then project number, then the path within the project.

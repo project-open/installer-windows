@@ -1,0 +1,1 @@
+Folder for user related files such as portraits

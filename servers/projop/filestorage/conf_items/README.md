@@ -1,0 +1,1 @@
+Folder for files related to "configuration items" (=inventory or deliverables)

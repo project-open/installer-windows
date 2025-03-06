@@ -1,0 +1,1 @@
+Folder for financial document templates in LibreOffice .odp format
