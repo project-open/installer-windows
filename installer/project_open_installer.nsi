@@ -16,8 +16,8 @@
 !define REGKEY		"SOFTWARE\${SHORTNAME}"
 
 !define VERSION_MAJ	"5.2.0"
-!define VERSION_MIN	"2.8"
-!define RELEASE		"001"
+!define VERSION_MIN	"2.9"
+!define RELEASE		"003"
 
 Name			"${PRODUCT} ${VERSION_MAJ}.${VERSION_MIN}"
 Caption			"${DESCRIPTION}" 
