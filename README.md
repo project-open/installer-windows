@@ -6,6 +6,10 @@ for \]po\[ V5.2.
 For issues please see the GitHub issue tracker:
 https://github.com/project-open/installer-windows/issues
 
+
+Download the Installer
+----------------------
+
 To download the finished Windows installer please see:
 https://sourceforge.net/projects/project-open/files/project-open/V5.2/
 (SourceForge is still better at handling large files...)
