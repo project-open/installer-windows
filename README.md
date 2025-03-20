@@ -1,32 +1,31 @@
 \]project-open\[ on Windows
 =========================
 
-This document explains how to build the \]po\[ Windows installer.
+This document explains how to build the \]po\[ Windows installer
+for \]po\[ V5.2.
 For issues please see the GitHub issue tracker:
 https://github.com/project-open/installer-windows/issues
 
-To download the Windows installer please see:
+To download the finished Windows installer please see:
 https://sourceforge.net/projects/project-open/files/project-open/V5.2/
-
-
-\]po\[ Version
---------------
-
-The instructions for \]po\[ V5.2.
+(SourceForge is still better at handling large files...)
 
 
 Get the repo
 ------------
 
-The GitHub repository for the installer is available at
+The GitHub repository for this installer is available at
 [https://github.com/project-open/installer-windows](https://github.com/project-open/installer-windows).
 
-The repo contains the installer source code for
+The repo contains all files you need to build the installer.
+However, you will need a number of external software packages
+(CygWin, PostgreSQL, JRE) that are easily available.
+We've included the binary for 
 [NSIS (Nullsoft Scriptable Install System)](https://nsis.sourceforge.io/Main_Page),
-plus some auxilliary files used in the process, but no major binaries that change
-between versions such as PostgreSQL or the Java JRE.
+plus some auxilliary files used by NSIS, because they may not
+be readily available for download.
 
-Get a copy of the repo (as Zip file at this stage) and copy into c:\\project-open
+So, clone this repo and copy into c:\\project-open
 (rename the folder from "installer-windows" to "project-open").
 
 
@@ -88,6 +87,7 @@ Now that we have CygWin running, we can operate the installer using Git:
 *   Configure Git user.email and user.name
 *   Try "git pull"
 
+
 Install NSIS (Nullsoft Scriptable Install System)
 --------------------------------------------------
 
@@ -101,10 +101,10 @@ c:\\project-open\\installer:
 *   Registry:  
     You need to copy "registry.dll" from the Zip file c:\\project-open\\installer\\NSIS\\NSIS-Plugin-Registry.zip -> Desktop/Plugin/registry.dll into C:\\ProgramFiles (x86)\\NSIS\\Plugins\\x86-ansi.  
     Watch out that the older plugins may install themselves in C:\\ProgramFiles (x86)\\NSIS\\Plugins. This is wrong since NSIS 3.0 apparently.  
-    Otherwise you will get an error
-    
-    Plugin not found, cannot call registry::\_KeyExists
-    
+    Otherwise you will get an error:
+<pre>
+Plugin not found, cannot call registry::\_KeyExists
+</pre>
 *   UserMgr: You need to manually copy the UserMgr.dll into the x86-ansi folder like above.
 *   ExecCmd: Like UsrMgr above
 *   Textreplace: Like above
@@ -135,53 +135,13 @@ to everything else and the possibility to reset the PostgreSQL password.
 
 ### Move PostgreSQL into the c:\\project-open folder
 
-Now:
-
 *   Stop the postgresql-x64-16 service in the "Services" Windows application
 *   Disable the postgresql-x64-16 service. The \]po\[ installer will create a replacement.
 *   Move c:\\postgres\\16 to c:\\project-open\\pgsql, so that you can see c:\\project-open\\pgsql\\bin and c:\\project-open\\pgsql\\data etc. 
 
 
-Obsolete steps from the past
------------------------------
-
-These steps are obsolete at the moment, they are included
-in case we'll get problems with PG in the future.
-
-    net user postgres "Qwer.1234" /add /fullname:"PostgreSQL"
-    # ToDo: UF\_PASSWD\_NOTREQD, UF\_DONT\_EXPIRE\_PASSWD, SeBatchLogonRight, SeServiceLogonRight
-    chown -R postgres "/pgsql"
-    chmod -R go=u "/pgsql"
-    chgrp" -R Users "/pgsql"
-    sc create postgresql-16.6 \\
-        binpath= "$INSTDIR\\pgsql\\bin\\pg\_ctl.exe runservice -N \\
-        postgresql-16.6 -D $INSTDIR/pgsql/data -w" \\
-        DisplayName= "\]po\[ PostgreSQL 16.6" start= "delayed-auto" \\
-        type= own obj= ".\\postgres" password= "Qwer.1234"
-    sc start postgresql-9.2
-
-You can manually run PostgreSQL with the following command (from within a CygWin shell):
-
-/pgsql/bin/pg\_ctl.exe -D "C:\\project-open\\pgsql\\data" start
-
-Some error messages that you might encounter then and how to fix them:
-
-*   Error while loading shared libraries: MSVCR100.dll: cannot open shared object file: No such file or directory:  
-    This means that you have to install the 2010 vcredist\_x64.exe distributable. This file is included in the \]po\[ installer as vcredist\_2010\_x64.exe.
-*   PANIC:  could not open control file "global/pg\_control": Permission denied:  
-    You forgot to execute the chown and chmod commands below.
-
-Finally initialize the database and load a database backup from the \]po\[ product master:
-
-initdb -D "c:/project-open/pgsql/data" --encoding=utf8 --locale=en\_US
-chown -R postgres:Users /pgsql
-chmod -R go=u /pgsql
-psql -f pgback.project-open-v50.projop.20170223.0529.sql projop > import.log 2>&1 &
-psql -c "select count(\*) from persons" projop
-
-
-Install the product code in /packages
--------------------------------------
+Download the \]po\[ product code into /server/projop/packages
+-------------------------------------------------------------
 
 In the CygWin shell perform:
 
@@ -193,8 +153,8 @@ git submodule update --recursive --init
 ```
 
 
-Install Java JRI
-----------------
+Install the Java JRI
+--------------------
 
 Java is used to run the "Service Panel" to start/stop/show
 the status of the \]po\[ server. We currently use:
@@ -204,8 +164,8 @@ the status of the \]po\[ server. We currently use:
 Just install into c:\\project-open\\jre\\
 
 
-NaviServer
-----------
+Install NaviServer
+------------------
 
 This installer starts off with the OpenACS installer from
 Maurizio Martignani from SpazioIT.
@@ -214,7 +174,7 @@ The files tcl8.5.19.zip and naviserver499.zip are included
 in c:\\project-open\\installer\\. Just unzip into /usr/local/:
 
 <pre>
-/usr/local/tcl8.5.18       Official TCL source distribution
+/usr/local/tcl8.5.18          Official TCL source distribution
 /usr/local/ns/bin
     nscgi.dll
     nscp.dll
